@@ -1,0 +1,23 @@
+		Product Accuracy Report:
+
+ 	SatID     : IRS-R2
+ 	ProductID : 1983747261
+ 	Sensor    : L3
+ 	Subscene  : 
+
+ 	TotalTiepoints:128
+ 	NoTiepointsRejected: 24
+ 	NoGoodTiepoints: 104
+ 	 MeanErrorInPixelDirection:   -0.40908 pixels
+ 	 MeanErrorInScanDirection:   -0.61465 pixels
+ 	 MeanErrorInPixelDirection:   -9.81795 m
+ 	 MeanErrorInScanDirection:  -14.75162 m
+ 	 StdDevInPixelDirection:    0.41782 pixels
+ 	 StdDevInScanDirection:    0.42316 pixels
+ 	 StdDevInPixelDirection:   10.02776 m
+ 	 StdDevInScanDirection:   10.15577 m
+ 	 CoVariance:   -0.01489 pixels
+ 	 RMSalongEigenAxes(rmin) :    0.40220 pixels
+ 	 RMSalongEigenAxes(rmax) :    0.43803 pixels
+
+ ------------------ END OF REPORT ----------------
