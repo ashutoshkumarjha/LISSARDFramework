@@ -1,0 +1,99 @@
+id: f884df9b-4458-47fd-a9d2-1a52a2db8a1e
+
+source_type: LISS3
+output_type: Ingest_ARD_LISS3_ard
+
+description: High Resolution Linear Imaging Self-Scanning System III
+
+location: '{ROOTLISSARD}/data/output/odc/1983747261'
+file_path_template: 'L3_{tile_index[0]}_{tile_index[1]}_{start_time}.nc'
+global_attributes:
+  title: NRSC Datacube High Resolution Linear Imaging Self-Scanning System III
+  summary: High Resolution Linear Imaging Self-Scanning System III data prepared by NRSC
+  source: IRS_P6 (LISS3 data is provided by the NRSC)
+  institution: NRSC
+  instrument: L3
+  cdm_data_type: Grid
+  keywords: AU/NRSC,NASA/GSFC/SED/ESD/IRS_P6,REFLECTANCE,LISS,EARTH SCIENCE
+  keywords_vocabulary: GCMD
+  platform: IRS_P6
+  product_suite: NRSC LISS3
+  project: AGDC
+  coverage_content_type: physicalMeasurement
+  references: http://www.gisat.cz/content/en/satellite-data/supplied-data/high-resolution?senzor=584#sat_detail
+  license: https://creativecommons.org/licenses/by/4.0/
+  naming_authority: NRSC
+  acknowledgment: LISS3 data is provided by the NRSC.
+
+storage:
+    driver: NetCDF CF
+
+    crs: |
+        EPSG:7755
+    tile_size:
+        x: 23900
+        y: 23900
+    resolution:
+        x: 23.5
+        y: -23.5
+    chunking:
+        x: 20
+        y: 20
+        time: 1
+    dimension_order: ['time', 'y', 'x']
+
+fuse_data: copy  
+    
+    
+    
+measurements:
+    - name: Green
+      dtype: float32
+      nodata: 0
+      resampling_method: cubic
+      src_varname: 'Green'
+      zlib: True
+      complevel: 4
+      shuffle: True
+      fletcher32: False
+      contiguous: False
+      attrs:
+          alias: "Band_1"
+    - name: Red
+      dtype: float32
+      nodata: 0
+      resampling_method: cubic
+      src_varname: 'Red'
+      zlib: True
+      complevel: 4
+      shuffle: True
+      fletcher32: False
+      contiguous: False
+      attrs:
+          alias: "Band_2"
+    - name: VNIR
+      dtype: float32
+      nodata: 0
+      resampling_method: cubic
+      src_varname: 'VNIR'
+      zlib: True
+      complevel: 4
+      shuffle: True
+      fletcher32: False
+      contiguous: False
+      attrs:
+          alias: "Band_3"
+    - name: SWIR
+      dtype: float32
+      nodata: 0
+      resampling_method: cubic
+      src_varname: 'SWIR'
+      zlib: True
+      complevel: 4
+      shuffle: True
+      fletcher32: False
+      contiguous: False
+      attrs:
+          alias: "Band_4"
+
+allow_product_changes: True

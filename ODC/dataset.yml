@@ -1,0 +1,38 @@
+id: f884df9b-4458-47fd-a9d2-1a52a2db8a1b
+$schema: 'https://schemas.opendatacube.org/dataset'
+
+product:
+    name: LISS3
+
+crs: "EPSG:7755"
+grids:
+    default:
+      shape: [7416, 7839]
+      transform: [23.720657576341200, 0.0, 4016941.603075480088592, 0.0, -23.720657575875499, 4849008.531195459887385, 0.0, 0.0, 1.0]
+
+measurements:
+    Green:
+      path: ../ouput/coreg/1983747221/corrected_band_1.tif
+    
+    Red:
+      path: ../ouput/coreg/1983747221/corrected_band_2.tif
+    
+    VNIR:
+      path: ../ouput/coreg/1983747221/corrected_band_3.tif
+    
+    SWIR:
+      path: ../ouput/coreg/1983747221/corrected_band_4.tif
+
+properties:
+    eo:platform: IRS_P6
+    eo:instrument: L3
+    
+    datetime: 2017-11-20T 05:24:16.653382Z
+    odc:processing_datetime: 2017-11-20Z
+    odc:file_format: Geotiff
+    odc:region_code: "r49p99" 
+    
+    dea:dataset_maturity: final
+    odc:product_family: ard
+
+lineage: {}
