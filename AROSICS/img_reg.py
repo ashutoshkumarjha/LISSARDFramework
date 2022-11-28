@@ -1,24 +1,37 @@
 import os
 import sys
+import argparse
 from arosics import COREG_LOCAL
 from arosics import Tie_Point_Grid
-path = '../data/'
-scene='1983747221'
-ard_img = path + '/ouput'+'/coreg/'+scene+'/corrected_7755.tif'
-im_reference = path + '/references/LC08_L2SP_144039_20171118_20200902_02_T1_SR_B2_7755.TIF'
-im_target = path + '/ouput'+ '/atm_corrected/L3_20171120_latn812lone310_r49p99_vmsk_rad_sref_7755.tif'
+
+
+parser = argparse.ArgumentParser()
+ 
+parser.add_argument("-cod", "--COREG_DIR", help = "Working Directory")
+parser.add_argument("-o", "--ARD_IMG", help = "Output image")
+parser.add_argument("-i", "--TARGET_IMG", help = "Target image")
+parser.add_argument("-r", "--REF_IMG", help = "Reference image")
+args = parser.parse_args()
+
+COREG_DIR = args.COREG_DIR
+ARD_IMG = args.ARD_IMG
+REF_IMG = args.REF_IMG
+TARGET_IMG = args.TARGET_IMG
+
+if(COREG_DIR is None or ARD_IMG is None or REF_IMG is None or TARGET_IMG is None):
+      raise Exception('[Error] Invalid params')
 kwargs = {
       'grid_res'     : 200,
       'window_size'  : (64,64),
-      'path_out'     : ard_img,
+      'path_out'     : ARD_IMG,
       'q'            : False,
 }
-CRL = COREG_LOCAL(im_reference,im_target,**kwargs)
+CRL = COREG_LOCAL(REF_IMG, TARGET_IMG, **kwargs)
 tpoints = CRL.CoRegPoints_table
-tpoints.to_csv(path + '/ouput'+'/tiepoints/'+scene+'_7755.csv')
+tpoints.to_csv(os.path.join(COREG_DIR, 'tie_points_7755.csv'))
 CRL.correct_shifts()
-os.system("gdal_translate -b 1 "+ard_img+" "+path+'output/coreg/'+scene+'/corrected_band_1.tif')
-os.system("gdal_translate -b 2 "+ard_img+" "+path+'output/coreg/'+scene+'/corrected_band_2.tif')
-os.system("gdal_translate -b 3 "+ard_img+" "+path+'output/coreg/'+scene+'/corrected_band_3.tif')
-os.system("gdal_translate -b 4 "+ard_img+" "+path+'output/coreg/'+scene+'/corrected_band_4.tif')
+os.system("gdal_translate -b 1 "+ARD_IMG+" "+os.path.join(COREG_DIR,"corrected_band_1.tif"))
+os.system("gdal_translate -b 2 "+ARD_IMG+" "+os.path.join(COREG_DIR,"corrected_band_2.tif"))
+os.system("gdal_translate -b 3 "+ARD_IMG+" "+os.path.join(COREG_DIR,"corrected_band_3.tif"))
+os.system("gdal_translate -b 4 "+ARD_IMG+" "+os.path.join(COREG_DIR,"corrected_band_4.tif"))
 print("ARD Creation Completed")

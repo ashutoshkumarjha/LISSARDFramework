@@ -2,11 +2,32 @@ from ruamel.yaml.main import round_trip_load as yaml_load, round_trip_dump as ya
 from ruamel.yaml.comments import CommentedMap as OrderedDict, CommentedSeq as OrderedList
 import uuid
 from osgeo import gdal, ogr, osr
-import numpy as np
-import math
-import uuid
-from pyproj import Transformer
-from shapely import geometry
+import argparse
+
+parser = argparse.ArgumentParser()
+ 
+parser.add_argument("-o", "--OUT_FILE", help = "Output yaml file path")
+parser.add_argument("-i", "--BANDS", help = "List of band file paths")
+parser.add_argument("-m", "--BAND_META", help = "Meta file")
+args = parser.parse_args()
+
+if(args.BANDS is None or args.OUT_FILE is None or args.BAND_META is None):
+    raise Exception('[Error] Invalid input.')
+
+OUT_FILE = args.OUT_FILE
+BAND_META = args.BAND_META
+IN_BANDS = [item for item in args.BANDS.split(',')]
+
+names=["Green", "Red", "VNIR", "SWIR"]
+
+m_params = ['ProductSceneEndTime', 'SceneEndTime', 'Path', 'Row']
+meta_data = {}
+with open(BAND_META) as f:
+    for line in f.readlines():
+        _k = line.split('=')[0]
+        if(_k in m_params):
+            meta_data[_k] = line.split('=')[1][1:-1]
+print(meta_data)
 
 def get_ds_ms(
     names=[],
@@ -17,6 +38,7 @@ def get_ds_ms(
     for name in names:
         _p = datapaths[_idx]
         _t[name] = OrderedDict({"path":_p})
+        _idx = _idx + 1
     return _t
 
 def get_ingst_ms_one(
@@ -44,10 +66,10 @@ def get_ingst_ms_one(
 def generate_ds_properties(
     platform="IRS_P6",
     instrument="L3",
-    dt="2017-11-20T 14:30:54.1476229Z",
-    processing_datetime="2017-11-20Z",
+    dt="",
+    processing_datetime="",
     file_format="Geotiff",
-    region_code="r51p99",
+    region_code="",
     dataset_maturity="final",
     product_family="ard"
 ):
@@ -87,46 +109,35 @@ def generate_ds_yaml(
         "properties": properties,
         "lineage": {}
     })
-    with open(r'./dataset.yaml', 'w') as file:
+    with open(OUT_FILE, 'w') as file:
         yaml_dump(yaml_dict_file, file)
 
-INPUT_DATA_ARR=["../output/coreg/1983747221/L3_20171120_latn805lone286_r51p99_vmsk_rad_sref.tif"]
-FILE_PATH="../temp/data_"
-names=["Green", "Red", "VNIR", "SWIR"]
+ds = gdal.Open(IN_BANDS[0])
+gt = ds.GetGeoTransform()
+width = ds.RasterXSize
+height = ds.RasterYSize
+in_crs = int(osr.SpatialReference(wkt=ds.GetProjection()).GetAttrValue('AUTHORITY',1))
 
-for INPUT_DATA in INPUT_DATA_ARR:
-    ds = gdal.Open(INPUT_DATA)
-    gt = ds.GetGeoTransform()
-    width = ds.RasterXSize
-    height = ds.RasterYSize
-    in_crs = int(osr.SpatialReference(wkt=ds.GetProjection()).GetAttrValue('AUTHORITY',1))
+_uid = str(uuid.uuid4())
 
-    _uid = str(uuid.uuid4())
-
-    for b_no in range(0, ds.RasterCount):
-        ods = gdal.Translate(FILE_PATH + _uid + "_" + str(b_no)  +'.tif', ds, bandList=[b_no+1])
-        c_x = ods.RasterXSize
-        c_y = ods.RasterYSize
-        ogt = ods.GetGeoTransform()
-
-    generate_ds_yaml(
-        product_name = "LISS3",
-        in_crs = in_crs,
-        shape = [width, height],
-        transform = [
-            ogt[1],
-            0,
-            ogt[0],
-            0,
-            ogt[5],
-            ogt[3],
-            0,
-            0,
-            1
-        ],
-        measurements = get_ds_ms(
-            names=names,
-            datapaths=[FILE_PATH + _uid + "_0.tif", FILE_PATH + _uid + "_1.tif", FILE_PATH + _uid + "_2.tif", FILE_PATH + _uid + "_3.tif"]
-        ),
-        properties = generate_ds_properties()
-    )
+generate_ds_yaml(
+    product_name = "LISS3",
+    in_crs = in_crs,
+    shape = [width, height],
+    transform = [
+        gt[1],
+        0,
+        gt[0],
+        0,
+        gt[5],
+        gt[3],
+        0,
+        0,
+        1
+    ],
+    measurements = get_ds_ms(
+        names=names,
+        datapaths=IN_BANDS
+    ),
+    properties = generate_ds_properties(dt=meta_data['ProductSceneEndTime'], processing_datetime=meta_data['SceneEndTime'], region_code='r' + meta_data['Row']+'p'+meta_data['Path'])
+)
