@@ -4,7 +4,15 @@ import glob
 import argparse
 
 #SAMPLE CMD
-# > python main.py -ap NoAerosols -atp NoGaseousAbsorption -ind /projects/mtech_project/sample_data/1983747221 -r /projects/mtech_project/sample_data/1983747221/ref/LC08_L2SP_144039_20171118_20200902_02_T1_SR_B2.TIF -aot 0.5 -igd /projects/mtech_project/sample_data/ingest_dir
+# python process.py \
+# -ap NoAerosols \
+# -atp NoGaseousAbsorption \
+# -ind ./data/input/1983747221/ \
+# -cod ./data/output/coreg/1983747221/ \
+# -atd ./data/output/atm_corrected/1983747221/ \
+# -r ./data/references/LC08_L2SP_144039_20171118_20200902_02_T1/LC08_L2SP_144039_20171118_20200902_02_T1_SR_B2.TIF \
+# -aot 0.5 \
+# -igd ./data/output/odc/1983747221
 
 
 parser = argparse.ArgumentParser()
@@ -18,6 +26,17 @@ parser.add_argument("-ap", "--AEROPRO", help = "Aerosol profile")
 parser.add_argument("-atp", "--ATMOSPRO", help = "AOT value")
 parser.add_argument("-igd", "--INGEST_DIR", help = "Ingest directory")
 args = parser.parse_args()
+
+# print(
+#     args.INPUT_DATA_DIR
+#         , args.REF_IMG
+#         , args.AOT
+#         , args.INGEST_DIR
+#         , args.AEROPRO
+#         , args.ATMOSPRO
+#         , args.COREG_DIR
+#         , args.ATM_DIR
+#     )
 
 if(
     args.INPUT_DATA_DIR is None
@@ -66,7 +85,7 @@ def run_sprocess(cmd):
     print(output)
 
 #ATM CORRECTION
-run_sprocess('conda run -n arcsi arcsi.py -s L3 -f KEA --stats -p RAD TOA SREF --aeropro ' + AEROPRO + ' --atmospro ' + ATMOSPRO + ' --aot '+str(AOT_VALUE)+' -o '+ATM_DIR+' -i '+meta_file+'')
+# run_sprocess('conda run -n arcsi arcsi.py -s L3 -f KEA --stats -p RAD TOA SREF --aeropro ' + AEROPRO + ' --atmospro ' + ATMOSPRO + ' --aot '+str(AOT_VALUE)+' -o '+ATM_DIR+' -i '+meta_file+'')
 sref_kea = get_sref_file(os.path.join(os.getcwd(), ATM_DIR))
 if(sref_kea is None):
     raise Exception('[Error] SREF')
@@ -74,13 +93,13 @@ print(sref_kea)
 
 #REPROJECT
 sref_tif_7755 = sref_kea + '_7755.tif'
-run_sprocess('conda run -n arcsi gdalwarp -t_srs EPSG:7755 '+sref_kea+' ' + sref_tif_7755)
+# run_sprocess('conda run -n arcsi gdalwarp -t_srs EPSG:7755 '+sref_kea+' ' + sref_tif_7755)
 REF_IMG_7755 = REF_IMG + '_7755.tif'
-run_sprocess('conda run -n arcsi gdalwarp -t_srs EPSG:7755 '+REF_IMG+' ' + REF_IMG_7755)
+# run_sprocess('conda run -n arcsi gdalwarp -t_srs EPSG:7755 '+REF_IMG+' ' + REF_IMG_7755)
 
 #COREG
 sref_coreg = os.path.join(COREG_DIR, 'coreg.tif')
-run_sprocess('conda run -n arosics python arosics/img_reg.py -cod '+COREG_DIR+' -i ' + sref_tif_7755 + ' -r ' + REF_IMG_7755 + ' -o ' + sref_coreg)
+run_sprocess('conda run -n arosics python ./AROSICS/img_reg.py -cod '+COREG_DIR+' -i ' + sref_tif_7755 + ' -r ' + REF_IMG_7755 + ' -o ' + sref_coreg)
 band_files = [
     os.path.join(COREG_DIR,"corrected_band_1.tif"),
     os.path.join(COREG_DIR,"corrected_band_2.tif"),
@@ -90,12 +109,12 @@ band_files = [
 
 #ODC DATASET
 ds_yml = os.path.join(COREG_DIR,"ds.yml")
-run_sprocess('conda run -n odc python generate_ds.py -i '+','.join(item for item in band_files)+' -o ' + ds_yml + ' -m ' + meta_file)
+run_sprocess('conda run -n odc python ./ODC/generate_ds.py -i '+','.join(item for item in band_files)+' -o ' + ds_yml + ' -m ' + meta_file)
 run_sprocess('conda run -n odc datacube dataset add '+ds_yml)
 
 #INGEST
 igst_yml = os.path.join(COREG_DIR,"ingest.yml")
-run_sprocess('conda run -n odc python generate_ingest.py -o '+igst_yml+' -id '+INGEST_DIR+' -i ' + sref_coreg)
+run_sprocess('conda run -n odc python ./ODC/generate_ingest.py -o '+igst_yml+' -id '+INGEST_DIR+' -i ' + sref_coreg)
 run_sprocess('conda run -n odc datacube ingest -c '+igst_yml)
 
 #TODO: DEM COR
