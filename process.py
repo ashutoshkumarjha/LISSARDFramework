@@ -85,7 +85,7 @@ def run_sprocess(cmd):
     print(output)
 
 #ATM CORRECTION
-# run_sprocess('conda run -n arcsi arcsi.py -s L3 -f KEA --stats -p RAD TOA SREF --aeropro ' + AEROPRO + ' --atmospro ' + ATMOSPRO + ' --aot '+str(AOT_VALUE)+' -o '+ATM_DIR+' -i '+meta_file+'')
+run_sprocess('conda run -n arcsi arcsi.py -s L3 -f KEA --stats -p RAD TOA SREF --aeropro ' + AEROPRO + ' --atmospro ' + ATMOSPRO + ' --aot '+str(AOT_VALUE)+' -o '+ATM_DIR+' -i '+meta_file+'')
 sref_kea = get_sref_file(os.path.join(os.getcwd(), ATM_DIR))
 if(sref_kea is None):
     raise Exception('[Error] SREF')
@@ -93,9 +93,9 @@ print(sref_kea)
 
 #REPROJECT
 sref_tif_7755 = sref_kea + '_7755.tif'
-# run_sprocess('conda run -n arcsi gdalwarp -t_srs EPSG:7755 '+sref_kea+' ' + sref_tif_7755)
+run_sprocess('conda run -n arcsi gdalwarp -t_srs EPSG:7755 '+sref_kea+' ' + sref_tif_7755)
 REF_IMG_7755 = REF_IMG + '_7755.tif'
-# run_sprocess('conda run -n arcsi gdalwarp -t_srs EPSG:7755 '+REF_IMG+' ' + REF_IMG_7755)
+run_sprocess('conda run -n arcsi gdalwarp -t_srs EPSG:7755 '+REF_IMG+' ' + REF_IMG_7755)
 
 #COREG
 sref_coreg = os.path.join(COREG_DIR, 'coreg.tif')
