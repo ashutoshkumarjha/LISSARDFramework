@@ -108,14 +108,14 @@ band_files = [
 ]
 
 #ODC DATASET
-ds_yml = os.path.join(COREG_DIR,"ds.yml")
-run_sprocess('conda run -n odc python ./ODC/generate_ds.py -i '+','.join(item for item in band_files)+' -o ' + ds_yml + ' -m ' + meta_file)
-run_sprocess('conda run -n odc datacube dataset add '+ds_yml)
+# ds_yml = os.path.join(COREG_DIR,"ds.yml")
+# run_sprocess('conda run -n odc python ./ODC/generate_ds.py -i '+','.join(item for item in band_files)+' -o ' + ds_yml + ' -m ' + meta_file)
+# run_sprocess('conda run -n odc datacube dataset add '+ds_yml)
 
 #INGEST
-igst_yml = os.path.join(COREG_DIR,"ingest.yml")
-run_sprocess('conda run -n odc python ./ODC/generate_ingest.py -o '+igst_yml+' -id '+INGEST_DIR+' -i ' + sref_coreg)
-run_sprocess('conda run -n odc datacube ingest -c '+igst_yml)
+# igst_yml = os.path.join(COREG_DIR,"ingest.yml")
+# run_sprocess('conda run -n odc python ./ODC/generate_ingest.py -o '+igst_yml+' -id '+INGEST_DIR+' -i ' + sref_coreg)
+# run_sprocess('conda run -n odc datacube ingest -c '+igst_yml)
 
 #TODO: DEM COR
 #gdalwarp -multi -wo NUM_THREADS=ALL_CPUS -co NUM_THREADS=ALL_CPUS --config GDAL_CACHEMAX 1536 -wm 1536 -rpc -to RPC_DEM=${DEM_FILE} -of GTiff ${inFile} ${outFile}
