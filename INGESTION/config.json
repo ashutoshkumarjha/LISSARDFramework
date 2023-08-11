@@ -1,0 +1,17 @@
+{
+    "vm": {
+        "start_time": "1990-01-01 00:00:00",
+        "tile_dir": "/projects/data/project/tiles",
+        "grid_dir": "/projects/data/project/grids",
+        "temp_dir": "/projects/data/project/temp_data",
+        "tindex_dir": "/projects/data/project/time_index",
+        "sindex_dir": "/projects/data/project/spatial_index",
+        "db_host": "127.0.0.1",
+        "db_user": "postgres",
+        "db_password": "manichan",
+        "db_database": "project",
+        "tbl_dataset_def": "dataset_def",
+        "tbl_ingest": "ingest_master",
+        "tbl_tiles": "tiles_local"
+    }
+}

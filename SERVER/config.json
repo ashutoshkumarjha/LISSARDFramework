@@ -1,0 +1,38 @@
+{
+    "hostel": {
+        "start_time": "1990-01-01 00:00:00",
+        "sensors": [],
+        "tile_dir": "G:\\ProjectData\\tiles",
+        "grid_dir": "G:\\ProjectData\\grids",
+        "temp_dir": "G:\\ProjectData\\temp_data",
+        "tindex_dir": "G:\\ProjectData\\time_index",
+        "sindex_dir": "G:\\ProjectData\\spatial_index",
+        "sindex_dir_2": "G:\\ProjectData\\spatial_index_2",
+        "sindex_dir_3": "G:\\ProjectData\\spatial_index_3",
+        "db_host": "127.0.0.1",
+        "db_user": "postgres",
+        "db_password": "manichan",
+        "db_database": "project_master",
+        "tbl_dataset_def": "dataset_def",
+        "tbl_ingest": "ingest_master",
+        "tbl_tiles": "tiles_local"
+    },
+    "lab": {
+        "start_time": "1990-01-01 00:00:00",
+        "sensors": [],
+        "tile_dir": "E:\\Mani\\ProjectData\\tiles",
+        "grid_dir": "E:\\Mani\\ProjectData\\grids",
+        "temp_dir": "E:\\Mani\\ProjectData\\temp_data",
+        "tindex_dir": "E:\\Mani\\ProjectData\\time_index",
+        "sindex_dir": "C:\\Users\\mrg21-021512536\\Desktop\\spatial_index",
+        "sindex_dir_2": "E:\\Mani\\ProjectData\\spatial_index_2",
+        "sindex_dir_3": "E:\\Mani\\ProjectData\\spatial_index_3",
+        "db_host": "127.0.0.1",
+        "db_user": "postgres",
+        "db_password": "manichan",
+        "db_database": "project_master",
+        "tbl_dataset_def": "dataset_def",
+        "tbl_ingest": "ingest_master",
+        "tbl_tiles": "tiles_local"
+    }
+}

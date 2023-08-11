@@ -1,0 +1,247 @@
+[
+    {
+        "ts": 1501558714000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/198374711_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/198374711.csv",
+        "ref_img": "LC08_L2SP_146038_20170913_20200903_02_T1_SR"
+    },
+    {
+        "ts": 1502853983000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747101_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747101.csv",
+        "ref_img": "LC08_L2SP_144040_20171017_20200902_02_T1_SR"
+    },
+    {
+        "ts": 1502853963000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747121_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747121.csv",
+        "ref_img": "LC08_L2SP_144039_20171001_20200903_02_T1_SR"
+    },
+    {
+        "ts": 1511151875000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747231_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747231.csv",
+        "ref_img": "LC08_L2SP_144040_20171102_20200902_02_T1_SR"
+    },
+    {
+        "ts": 1510720113000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747191_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747191.csv",
+        "ref_img": "LC08_L2SP_145039_20171125_20200902_02_T1_SR"
+    },
+    {
+        "ts": 1490416063000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747311_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747311.csv",
+        "ref_img": "LC08_L2SP_144040_20170408_20200904_02_T1_SR"
+    },
+    {
+        "ts": 1489552594000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747361_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747361.csv",
+        "ref_img": "LC08_L2SP_146040_20170321_20200904_02_T1_SR"
+    },
+    {
+        "ts": 1489120849000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747271_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747271.csv",
+        "ref_img": "LC08_L2SP_147040_20170328_20200904_02_T1_SR"
+    },
+    {
+        "ts": 1511151855000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747221_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747221.csv",
+        "ref_img": "LC08_L2SP_144039_20171102_20200902_02_T1_SR"
+    },
+    {
+        "ts": 1501990477000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/198374751_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/198374751.csv",
+        "ref_img": "LC08_L2SP_146039_20170929_20200903_02_T1_SR"
+    },
+    {
+        "ts": 1490416083000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747321_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747321.csv",
+        "ref_img": "LC08_L2SP_144040_20170424_20200904_02_T1_SR"
+    },
+    {
+        "ts": 1501558734000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/198374721_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/198374721.csv",
+        "ref_img": "LC08_L2SP_146040_20170625_20200903_02_T1_SR"
+    },
+    {
+        "ts": 1509856630000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747161_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747161.csv",
+        "ref_img": "LC08_L2SP_146039_20171202_20200902_02_T1_SR"
+    },
+    {
+        "ts": 1502422200000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/198374771_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/198374771.csv",
+        "ref_img": "LC08_L2SP_145038_20170906_20200903_02_T1_SR"
+    },
+    {
+        "ts": 1511151895000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747241_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747241.csv",
+        "ref_img": "LC08_L2SP_144040_20171102_20200902_02_T1_SR"
+    },
+    {
+        "ts": 1489984339000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747301_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747301.csv",
+        "ref_img": "LC08_L2SP_145040_20170415_20200904_02_T1_SR"
+    },
+    {
+        "ts": 1501990497000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/198374761_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/198374761.csv",
+        "ref_img": "LC08_L2SP_146040_20170625_20200903_02_T1_SR"
+    },
+    {
+        "ts": 1501990456000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/198374741_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/198374741.csv",
+        "ref_img": "LC08_L2SP_146038_20170913_20200903_02_T1_SR"
+    },
+    {
+        "ts": 1501558754000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/198374731_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/198374731.csv",
+        "ref_img": "LC08_L2SP_146040_20170625_20200903_02_T1_SR"
+    },
+    {
+        "ts": 1489120829000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747261_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747261.csv",
+        "ref_img": "LC08_L2SP_146040_20170321_20200904_02_T1_SR"
+    },
+    {
+        "ts": 1510720153000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747211_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747211.csv",
+        "ref_img": "LC08_L2SP_145040_20171024_20200902_02_T1_SR"
+    },
+    {
+        "ts": 1510288370000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747131_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747131.csv",
+        "ref_img": "LC08_L2SP_145039_20171024_20200902_02_T1_SR"
+    },
+    {
+        "ts": 1502853943000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747111_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747111.csv",
+        "ref_img": "LC08_L2SP_144038_20170915_20200903_02_T1_SR"
+    },
+    {
+        "ts": 1489120809000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747251_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747251.csv",
+        "ref_img": "LC08_L2SP_146039_20170305_20200905_02_T1_SR"
+    },
+    {
+        "ts": 1489552574000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747351_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747351.csv",
+        "ref_img": "LC08_L2SP_145040_20170226_20200905_02_T1_SR"
+    },
+    {
+        "ts": 1510288391000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747141_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747141.csv",
+        "ref_img": "LC08_L2SP_145040_20171024_20200902_02_T1_SR"
+    },
+    {
+        "ts": 1502422240000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/198374791_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/198374791.csv",
+        "ref_img": "LC08_L2SP_145040_20171008_20200903_02_T1_SR"
+    },
+    {
+        "ts": 1510720133000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747201_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747201.csv",
+        "ref_img": "LC08_L2SP_145040_20171125_20200902_02_T1_SR"
+    },
+    {
+        "ts": 1509856670000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747181_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747181.csv",
+        "ref_img": "LC08_L2SP_147040_20171123_20200902_02_T1_SR"
+    },
+    {
+        "ts": 1490416043000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747331_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747331.csv",
+        "ref_img": "LC08_L2SP_144039_20170424_20200904_02_T1_SR"
+    },
+    {
+        "ts": 1489984319000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747291_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747291.csv",
+        "ref_img": "LC08_L2SP_145040_20170415_20200904_02_T1_SR"
+    },
+    {
+        "ts": 1502422220000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/198374781_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/198374781.csv",
+        "ref_img": "LC08_L2SP_145040_20171008_20200903_02_T1_SR"
+    },
+    {
+        "ts": 1489552554000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747341_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747341.csv",
+        "ref_img": "LC08_L2SP_145039_20170330_20200904_02_T1_SR"
+    },
+    {
+        "ts": 1509856650000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747171_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747171.csv",
+        "ref_img": "LC08_L2SP_146040_20171202_20200902_02_T1_SR"
+    },
+    {
+        "ts": 1510288411000,
+        "sensor": "LISS3",
+        "filePath": "/projects/liss3/outputs/cog/1983747151_cog.tif",
+        "tiePoints": "/projects/liss3/outputs/1983747151.csv",
+        "ref_img": "LC08_L2SP_146040_20171116_20200902_02_T1_SR"
+    }
+]

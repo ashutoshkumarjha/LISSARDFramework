@@ -1,0 +1,64 @@
+{
+    "inputs": [
+        {
+            "componentId": "jffb26",
+            "id": "rbaz3s",
+            "tIndexes": [
+                914925604,
+                913543204
+            ],
+            "isTemporal": true,
+            "aoiCode": "qwertyuiopasdfgh",
+            "dsName": "Landsat_OLI",
+            "layerName": "",
+            "type": "in_raster_band",
+            "name": "Raster Band",
+            "noOfBands": 7,
+            "band": "2",
+            "loc": "200 150",
+            "prevLoc": null
+        },
+        {
+            "componentId": "bn205q",
+            "id": "rbaz3s",
+            "tIndexes": [
+                914925604,
+                913543204
+            ],
+            "isTemporal": true,
+            "aoiCode": "qwertyuiopasdfgh",
+            "dsName": "Landsat_OLI",
+            "layerName": "",
+            "type": "in_raster_band",
+            "name": "Raster Band",
+            "noOfBands": 7,
+            "band": "5",
+            "loc": "200 150",
+            "prevLoc": null
+        }
+    ],
+    "output": {
+        "componentId": "fjkn6e",
+        "type": "out_raster_band",
+        "id": "s23oa7"
+    },
+    "operations": [
+        {
+            "componentId": "s23oa7",
+            "id": "",
+            "type": "op_ndi",
+            "name": "Normalized Difference",
+            "inputs": [
+                {
+                    "layer": "jffb26"
+                },
+                {
+                    "layer": "bn205q"
+                }
+            ],
+            "output": {
+                "layer": "s23oa7"
+            }
+        }
+    ]
+}
