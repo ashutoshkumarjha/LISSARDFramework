@@ -195,11 +195,12 @@ def get_data_refs_for_aoi(sensorName: str, level: int, tIndexes: str, aoiCode: s
     target_srs.ImportFromEPSG(4326)
     aoi_geom.AssignSpatialReference(target_srs)
 
-    level = 12
+    # level = 12
 
     bbox = aoi_geom.GetEnvelope()
 
     tiles = get_tile_intersection(level, [bbox[0], bbox[2], bbox[1], bbox[3]])
+    # print([bbox[0], bbox[2], bbox[1], bbox[3]])
     if tiles is None:
         print("Failed to read sIndex")
         return None

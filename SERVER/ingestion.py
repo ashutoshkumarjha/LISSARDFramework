@@ -164,7 +164,21 @@ def reproject_extent(xmin, ymin, xmax, ymax, in_srs, out_srs):
     xmin, xmax, ymin, ymax = output_geom.GetEnvelope()
     return (xmin, ymin, xmax, ymax)
 
-def partition_data(input_tiff, input_ts, sensor_name):
+
+def update_db_tile_sat_ref(tile_id, sat_ref):
+    conn = get_db_conn()
+    cursor = conn.cursor(cursor_factory=RealDictCursor)
+    cursor.execute(f"""
+        update tiles_local
+            set sat_ref = '{sat_ref}'
+            where tile_id = '{tile_id}';
+    """)
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return True
+
+def partition_data(input_tiff, input_ts, sensor_name, sat_ref = None):
     start_ts = int(datetime.timestamp(datetime.strptime(config["start_time"], '%Y-%m-%d %H:%M:%S'))*1000)
     time_index = int((input_ts - start_ts)/1000)
     print(f"Saving tiles to {config['tile_dir']}, Sc:{input_tiff}, Ti:{time_index}")
@@ -184,7 +198,10 @@ def partition_data(input_tiff, input_ts, sensor_name):
         dataset = gdal.Warp('', dataset, format='VRT', dstSRS="EPSG:4326")
         print(f"Reprojection completed")
 
-    ds_def = get_db_dataset_def_by_name(sensor_name)
+    if sensor_name.startswith('output_'):
+        ds_def = {"dataset_id": -1}
+    else:
+        ds_def = get_db_dataset_def_by_name(sensor_name)
     ingest_data = {
         "dataset_id": ds_def["dataset_id"],
         "geom": f"st_setsrid(st_geomfromgeojson('{extent_geom.ExportToJson()}'), 4326)",
@@ -194,17 +211,17 @@ def partition_data(input_tiff, input_ts, sensor_name):
     ingest_id = add_db_ingestion(ingest_data)
     
     dir_path = config["tile_dir"]
-    tindex_file = os.path.join(config["tindex_dir"], f"{sensor_name}.json")
+    # tindex_file = os.path.join(config["tindex_dir"], f"{sensor_name}.json")
     tile_size = 256
 
-    tindex_data = {"data": []}
-    if os.path.exists(tindex_file):
-        tindex_data = json.load(open(tindex_file))
+    # tindex_data = {"data": []}
+    # if os.path.exists(tindex_file):
+    #     tindex_data = json.load(open(tindex_file))
     
-    tindex_data["data"].append(time_index)
+    # tindex_data["data"].append(time_index)
 
-    with open(tindex_file, "w") as tifile:
-        tifile.write(json.dumps(tindex_data, indent=4))
+    # with open(tindex_file, "w") as tifile:
+    #     tifile.write(json.dumps(tindex_data, indent=4))
 
     for i in range(4, 13):
         lcount = 0
@@ -250,7 +267,10 @@ def partition_data(input_tiff, input_ts, sensor_name):
                     "z_index": f"'{z.interlace(time_index, y_id, x_id)}'",
                     "file_path": f"'{rel_file_path}'"
                 }
+                if sat_ref is None:
+                    sat_ref = input_tiff.split('/')[-1].split('_')[2]
                 tile_id = add_db_tile(tile_data)
+                update_db_tile_sat_ref(tile_id, sat_ref)
                 # print(tile_id)
 
                 tmp_ds = gdal.Translate(out_path, dataset, width=tile_size, height=tile_size, format='COG', projWin = [xmin, ymax, xmax, ymin], outputSRS="EPSG:4326", projWinSRS="EPSG:4326", noData=0, resampleAlg='cubic')

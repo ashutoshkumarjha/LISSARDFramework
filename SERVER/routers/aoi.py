@@ -5,6 +5,7 @@ from pydantic import BaseModel
 class AddAoiReq(BaseModel):
     aoiGj: str
     aoiName: str
+    isTemp: str = False
 
 router = APIRouter()
 
@@ -46,7 +47,8 @@ def get_aoi_by_code(aoiCode: str):
 @router.post("/addAoi")
 def add_aoi(req: AddAoiReq):
     try:
-        aoi = Db.insert_aoi(req.aoiName, req.aoiGj)
+        print(req.aoiGj)
+        aoi = Db.insert_aoi(req.aoiName, req.aoiGj, req.isTemp)
         return {
             "error": False,
             "message": "Success",

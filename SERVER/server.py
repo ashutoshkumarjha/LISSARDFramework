@@ -7,12 +7,16 @@ import routers.ingest as ingest_router
 import routers.datasets as ds_router
 import routers.spatial_index as si_router
 import routers.tile as tile_router
+import routers.geoprocess as geoprocess_router
 
-clean_tmp_dir()
+# clean_tmp_dir()
 print("Tmp dir cleaned")
 app = FastAPI()
 origins = [
     "http://localhost:3000",
+    "https://demo.gishorizon.com",
+    "http://172.16.20.35:8080",
+    "*"
 ]
 
 app.add_middleware(
@@ -27,6 +31,4 @@ app.include_router(ingest_router.router)
 app.include_router(ds_router.router)
 app.include_router(si_router.router)
 app.include_router(tile_router.router)
-
-
-
+app.include_router(geoprocess_router.router)
