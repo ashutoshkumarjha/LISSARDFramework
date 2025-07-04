@@ -153,7 +153,7 @@ Please make sure to update tests  as necessary.
    journal = {Journal of the Indian Society of Remote Sensing},
    month = {6},
    title = {A Computation Framework for LISS-III Analysis Ready Data (ARD) Products for Indian Spatial Data Cube Generation},
-   url_doi = {https://link.springer.com/10.1007/s12524-024-01928-9},
+   url_doi = {[https://link.springer.com/10.1007/s12524-024-01928-9](https://link.springer.com/article/10.1007/s12524-024-01928-9)},
    url = { https://rdcu.be/dMr2d },
    year = {2024}
 }
